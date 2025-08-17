@@ -107,7 +107,7 @@ Using the file-creator subagent, create the project documentation directory stru
 ---
 
 ### Step 3: Generate Mission Document
-**Output:** `@docs/mission.md`
+**Output:** `@docs/product/mission.md`
 **Dependencies:** Steps 1-2 completion
 
 Using the file-creator subagent, generate comprehensive mission documentation using collected requirements and structured templates.
@@ -247,7 +247,7 @@ Using the file-creator subagent, generate comprehensive mission documentation us
 ---
 
 ### Step 4: Generate Technical Stack Documentation
-**Output:** `@docs/tech-stack.md`
+**Output:** `@docs/product/tech-stack.md`
 **Dependencies:** User tech preferences from Step 1
 
 Using the file-creator subagent, generate comprehensive technical architecture documentation based on project requirements and modern best practices.
@@ -336,7 +336,7 @@ Type 'default' for any category to use recommended modern stack.
 ---
 
 ### Step 5: Generate AI-Optimized Mission Summary
-**Output:** `@docs/mission-lite.md`
+**Output:** `@docs/product/mission-lite.md`
 **Dependencies:** Completed mission.md from Step 3
 
 Using the file-creator subagent, create a condensed, AI-optimized version of the mission document for efficient context usage in future AI interactions.
@@ -390,27 +390,23 @@ Serves distributed software teams needing seamless task coordination across time
 ---
 
 ### Step 6: Generate Development Roadmap
-**Output:** `@docs/roadmap.md`
+**Output:** `@docs/product/roadmap.md`
 **Dependencies:** Feature analysis from mission.md and tech-stack.md
 
-Using the file-creator subagent, create a comprehensive, phased development plan with realistic timelines and effort estimates.
+Using the file-creator subagent, create a comprehensive, phased development plan.
 
 #### Roadmap Structure
 ```markdown
 # [PROJECT_NAME] - Development Roadmap
 
 ## Timeline Overview
-- **Total Project Duration:** [ESTIMATED_TIMELINE]
-- **Team Size Assumption:** [NUMBER_OF_DEVELOPERS]
-- **Development Methodology:** [AGILE/SCRUM/KANBAN]
 
 ## Phase [NUMBER]: [PHASE_NAME]
-**Duration:** [TIME_ESTIMATE]
-**Goal:** [CLEAR_PHASE_OBJECTIVE]
-**Success Criteria:** [MEASURABLE_COMPLETION_CRITERIA]
+- **Goal:** [CLEAR_PHASE_OBJECTIVE]
+- **Success Criteria:** [MEASURABLE_COMPLETION_CRITERIA]
 
 ### Core Deliverables
-- [ ] **[FEATURE_NAME]** - [USER_STORY_FORMAT] `[EFFORT_ESTIMATE]`
+- [ ] **[FEATURE_NAME]** - [USER_STORY_FORMAT]
   - **Acceptance Criteria:** [SPECIFIC_REQUIREMENTS]
   - **Technical Notes:** [IMPLEMENTATION_CONSIDERATIONS]
 
@@ -427,62 +423,47 @@ Using the file-creator subagent, create a comprehensive, phased development plan
 
 #### Phase Planning Guidelines
 
-**Phase 1 - MVP Foundation (Weeks 1-4)**
+**Phase 1 - MVP Foundation**
 - Core user authentication and basic functionality
 - Essential features that prove the core value proposition
 - Basic UI/UX that allows users to complete primary tasks
 - Minimal viable backend architecture
 
-**Phase 2 - Differentiation (Weeks 5-8)**
+**Phase 2 - Differentiation**
 - Key features that set the product apart from competitors
 - Enhanced user experience and interface polish
 - Core integrations and API connections
 - Basic analytics and monitoring
 
-**Phase 3 - Scale & Performance (Weeks 9-12)**
+**Phase 3 - Scale & Performance**
 - Performance optimization and scalability improvements
 - Advanced features based on user feedback
 - Enhanced security and compliance features
 - Comprehensive testing and quality assurance
 
-**Phase 4 - Growth Features (Weeks 13+)**
+**Phase 4 - Growth Features**
 - Advanced analytics and reporting
 - Enterprise-level features and integrations
 - Advanced customization and configuration options
 - Mobile applications or PWA capabilities
-
-#### Effort Estimation Scale
-
-**Story Point System:**
-- **XS (1 point):** 1-2 days - Simple UI changes, minor bug fixes
-- **S (2 points):** 3-5 days - Single feature implementation, basic API endpoint
-- **M (3 points):** 1-2 weeks - Complex feature, database schema changes
-- **L (5 points):** 2-3 weeks - Major feature with multiple components
-- **XL (8 points):** 3+ weeks - Core system architecture, complex integrations
-
-**Estimation Guidelines:**
-- Include time for testing, code review, and documentation
-- Add 20% buffer for unexpected complexity
-- Consider team experience with the technology stack
-- Account for integration and deployment time
 
 ---
 
 ## Command Completion & Validation
 
 ### Success Criteria Checklist
-- [ ] All 4 documentation files created in `docs/`
+- [ ] All 4 documentation files created in `docs/product`
 - [ ] User requirements captured and validated
 - [ ] Technology stack fully specified (no missing items)
 - [ ] Mission document includes all required sections
-- [ ] Roadmap has realistic timelines and effort estimates
+- [ ] Roadmap has clear phases and deliverables
 - [ ] All files are properly formatted and readable
 - [ ] Documentation is ready for development team usage
 
 ### Command Execution Sequence
 1. **Input Collection** - Gather all required project information
 2. **Validation** - Ensure all critical data is complete
-3. **Structure Creation** - Initialize `docs/` directory
+3. **Structure Creation** - Initialize `docs/product/` directory
 4. **Document Generation** - Create all 4 documentation files
 5. **Cross-Reference Validation** - Ensure consistency across documents
 6. **Final Review** - Verify completeness and quality
