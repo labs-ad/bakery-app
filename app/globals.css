@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: var(--font-inter), system-ui, sans-serif;
+  }
+
+  .font-display {
+    font-family: var(--font-playfair), serif;
+  }
+
+  body {
+    @apply bg-white text-gray-900;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply rounded-lg bg-orange-600 px-8 py-3 font-semibold text-white transition-colors duration-200 hover:bg-orange-700;
+  }
+
+  .btn-secondary {
+    @apply rounded-lg border-2 border-orange-600 px-8 py-3 font-semibold text-orange-600 transition-colors duration-200 hover:bg-orange-600 hover:text-white;
+  }
+
+  .card {
+    @apply rounded-lg bg-white/80 p-6 shadow-md backdrop-blur-sm;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
