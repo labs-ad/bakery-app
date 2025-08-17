@@ -42,8 +42,8 @@ next-env.d.ts
 # OS
 Thumbs.db
 
-# Package managers
-pnpm-lock.yaml
+# Yarn and NPM Package managers
+package-lock.json
 yarn.lock
 
 # Logs
