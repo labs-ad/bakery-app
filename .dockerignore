@@ -1,0 +1,172 @@
+# Docker ignore file for Next.js production builds
+# Optimized for security and minimal image size
+
+# Dependencies (will be installed in container)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnpm-debug.log*
+
+# Next.js build outputs (built in container)
+.next/
+.next.tar.gz
+out/
+build/
+dist/
+
+# Environment files (security - never copy secrets)
+.env*
+!.env.example
+
+# Development and testing files
+coverage/
+.nyc_output/
+*.lcov
+__tests__/
+**/*.test.*
+**/*.spec.*
+test/
+tests/
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Logs
+logs/
+*.log
+
+# Dependency directories and package manager files
+.npm
+.pnpm-store/
+jspm_packages/
+node_modules.tar.gz
+
+# Package manager lockfiles (except pnpm)
+package-lock.json
+yarn.lock
+
+# Cache directories
+.cache/
+.parcel-cache/
+.eslintcache
+.stylelintcache
+
+# TypeScript
+*.tsbuildinfo
+
+# Optional npm cache directory
+.npm
+
+# Microbundle cache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# Diagnostic reports
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+*~
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Git files
+.git/
+.gitignore
+.gitattributes
+
+# Documentation and README files
+*.md
+!package.json
+docs/
+CHANGELOG*
+LICENSE*
+
+# Linting and formatting configs
+.eslintrc*
+.prettierrc*
+.stylelintrc*
+.editorconfig
+.babelrc*
+
+# Build and config files (keep essential ones)
+Dockerfile*
+.dockerignore
+docker-compose*.yml
+
+# Config files to exclude (keep next.config.js, tsconfig.json, tailwind.config.*, postcss.config.*)
+webpack.config.js
+rollup.config.js
+vite.config.*
+vitest.config.*
+jest.config.*
+playwright.config.*
+cypress.config.*
+*.config.mjs
+
+# Husky git hooks
+.husky/
+
+# Temporary files and directories
+tmp/
+temp/
+.tmp/
+
+# MacOS specific
+.Spotlight-V100
+.Trashes
+
+# Windows specific
+ehthumbs_vista.db
+
+# Linux specific
+*~
+
+# Deployment and CI/CD files
+.github/
+.gitlab-ci.yml
+.travis.yml
+.circleci/
+netlify.toml
+vercel.json
+
+# Storybook
+.storybook/
+storybook-static/
+
+# Analytics and monitoring
+.sentryclirc
+.env.sentry-build-plugin
+
+# Backup files
+*.backup
+*.bak
+*.orig
