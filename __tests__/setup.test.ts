@@ -3,8 +3,6 @@
  * These tests ensure core functionality is working before development begins
  */
 
-import { describe, it, expect } from 'vitest'
-
 describe('Application Setup', () => {
   it('should have Node.js version 20.x or higher', () => {
     const nodeVersion = process.version
