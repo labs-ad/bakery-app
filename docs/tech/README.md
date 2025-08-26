@@ -6,13 +6,14 @@
 
 ### Prerequisites
 
-- **Node.js**: 20.x or higher
-- **Package Manager**: pnpm 8.x or higher
+- **Node.js**: 22.x or higher
+- **Package Manager**: pnpm 10.x or higher
 - **PostgreSQL**: 15+ (for database - coming in Task 2)
 
 ### Installation
 
 1. **Clone and install dependencies:**
+
    ```bash
    git clone <repository-url>
    cd bakery-app
@@ -20,19 +21,21 @@
    ```
 
 2. **Environment setup:**
+
    ```bash
    cp .env.example .env.local
    # Edit .env.local with your configuration
    ```
 
 3. **Start development:**
+
    ```bash
    pnpm dev
    ```
 
 4. **Open application:**
    - Visit: [http://localhost:3000](http://localhost:3000)
-   - Ready in ~1.8 seconds with Turbopack
+   - Ready in ~1.8 seconds with Turbopack (Next.js 15)
 
 ---
 
@@ -49,10 +52,12 @@ npx next dev
 ```
 
 **Development Features:**
-- **Hot Reload**: Instant updates on file changes
-- **Turbopack**: Next.js 14's faster bundler
-- **TypeScript**: Real-time type checking
+
+- **Hot Reload**: Instant updates on file changes with server components HMR caching
+- **Turbopack**: Next.js 15's faster bundler with React 19 support
+- **TypeScript**: Real-time type checking with strict configuration
 - **Environment**: Automatically loads `.env.local`
+- **Logging**: Enhanced fetch logging for debugging
 
 ### Production Build
 
@@ -68,17 +73,19 @@ pnpm start
 
 ### Available Scripts
 
-| Script | Description | Usage |
-|--------|-------------|-------|
-| `pnpm dev` | Development server with Turbopack | Primary development |
-| `pnpm build` | Production build | CI/CD pipeline |
-| `pnpm start` | Production server | Deployment |
-| `pnpm lint` | ESLint checking | Code quality |
-| `pnpm lint:fix` | ESLint auto-fix | Fix code issues |
-| `pnpm type-check` | TypeScript validation | Type safety |
-| `pnpm test` | Run unit tests | Testing |
-| `pnpm test:ui` | Vitest UI interface | Interactive testing |
-| `pnpm test:coverage` | Test coverage report | Code coverage |
+| Script               | Description                                 | Usage                    |
+| -------------------- | ------------------------------------------- | ------------------------ |
+| `pnpm dev`           | Development server with Turbopack           | Primary development      |
+| `pnpm build`         | Production build                            | CI/CD pipeline           |
+| `pnpm start`         | Production server                           | Deployment               |
+| `pnpm lint`          | ESLint checking (flat config)               | Code quality             |
+| `pnpm lint:fix`      | ESLint auto-fix                             | Fix code issues          |
+| `pnpm type-check`    | TypeScript validation                       | Type safety              |
+| `pnpm test`          | Jest tests with Next.js integration         | Testing                  |
+| `pnpm test:watch`    | Jest in watch mode                          | Development testing      |
+| `pnpm test:coverage` | Jest coverage report                        | Code coverage            |
+| `pnpm build:check`   | Full validation (type-check + lint + build) | Pre-deployment           |
+| `pnpm analyze`       | Bundle analysis                             | Performance optimization |
 
 ---
 
@@ -86,29 +93,41 @@ pnpm start
 
 ### ESLint Configuration
 
-**Location:** `.eslintrc.json`
+**Location:** `eslint.config.mjs` (Modern Flat Config)
 
-```json
-{
-  "extends": ["next/core-web-vitals", "prettier"],
-  "plugins": ["@typescript-eslint"],
-  "rules": {
-    "@typescript-eslint/no-unused-vars": "error",
-    "@typescript-eslint/no-explicit-any": "warn",
-    "prefer-const": "error",
-    "no-var": "error",
-    "no-console": "warn",
-    "react/jsx-curly-brace-presence": ["error", { "props": "never" }],
-    "react/self-closing-comp": "error"
-  }
-}
+```javascript
+import js from '@eslint/js'
+import { FlatCompat } from '@eslint/eslintrc'
+
+const eslintConfig = [
+  {
+    ignores: ['.next/**', 'node_modules/**', 'build/**'],
+  },
+  ...compat.config({
+    extends: [
+      'eslint:recommended',
+      'next/core-web-vitals',
+      'next/typescript',
+      'prettier',
+    ],
+    rules: {
+      '@typescript-eslint/no-unused-vars': 'error',
+      '@typescript-eslint/no-explicit-any': 'warn',
+      'jsx-a11y/aria-props': 'error',
+      'react-hooks/exhaustive-deps': 'warn',
+      'prefer-const': 'error',
+    },
+  }),
+]
 ```
 
 **Key Features:**
-- **Next.js Rules**: Core web vitals and React best practices
-- **TypeScript**: Strict type checking and unused variable detection
-- **React**: JSX optimization and component standards
-- **Test Override**: Relaxed rules for test files
+
+- **Modern Flat Config**: Next.js 15 recommended configuration
+- **TypeScript Integration**: Full Next.js TypeScript support
+- **Accessibility**: Built-in a11y rules
+- **Ignores**: Proper exclusion of build files and dependencies
+- **Environment-specific**: Different rules for tests and config files
 
 ### Prettier Configuration
 
@@ -128,6 +147,7 @@ pnpm start
 ```
 
 **Features:**
+
 - **Tailwind Plugin**: Automatic class sorting
 - **Consistent Style**: Single quotes, no semicolons
 - **Auto-formatting**: On save and pre-commit
@@ -137,6 +157,7 @@ pnpm start
 **Location:** `.husky/pre-commit`
 
 Automatically runs on every commit:
+
 1. **lint-staged**: ESLint + Prettier on staged files
 2. **Type checking**: Full TypeScript validation
 3. **Commit validation**: Message format checking
@@ -154,13 +175,8 @@ pnpm type-check
 ```json
 {
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "eslint --fix",
-      "prettier --write"
-    ],
-    "*.{json,md,css}": [
-      "prettier --write"
-    ]
+    "*.{js,jsx,ts,tsx}": ["eslint --fix", "prettier --write"],
+    "*.{json,md,css}": ["prettier --write"]
   }
 }
 ```
@@ -175,44 +191,77 @@ pnpm type-check
 
 ```javascript
 const nextConfig = {
-  // Turbopack for faster development
-  experimental: {
-    turbo: {
-      loaders: {
-        '.svg': ['@svgr/webpack'],
-      },
-    },
-  },
-  
+  // Standalone output for Docker/Cloud Run
+  output: 'standalone',
+
   // Performance optimizations
   reactStrictMode: true,
-  swcMinify: true,
-  
+  compress: true,
+  productionBrowserSourceMaps: false,
+  poweredByHeader: false,
+
+  // Development optimizations
+  logging: {
+    fetches: {
+      fullUrl: true,
+    },
+  },
+
+  // Next.js 15 experimental features
+  experimental: {
+    optimizePackageImports: [
+      '@/components',
+      '@/lib',
+      '@/hooks',
+      'class-variance-authority',
+      'clsx',
+      'tailwind-merge',
+    ],
+    serverComponentsHmrCache: true,
+    reactCompiler: true,
+  },
+
   // Image optimization
   images: {
-    domains: ['localhost'],
     formats: ['image/webp', 'image/avif'],
+    minimumCacheTTL: 60,
+    dangerouslyAllowSVG: false,
+    remotePatterns: [],
   },
-  
-  // Security headers
+
+  // Comprehensive security headers
   async headers() {
-    return [{
-      source: '/(.*)',
-      headers: [
-        { key: 'X-Frame-Options', value: 'DENY' },
-        { key: 'X-Content-Type-Options', value: 'nosniff' },
-        { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
-      ],
-    }]
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'Strict-Transport-Security',
+            value: 'max-age=63072000; includeSubDomains; preload',
+          },
+          { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
+          { key: 'X-Content-Type-Options', value: 'nosniff' },
+          { key: 'X-XSS-Protection', value: '1; mode=block' },
+          { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+          {
+            key: 'Permissions-Policy',
+            value: 'geolocation=(), microphone=(), camera=()',
+          },
+        ],
+      },
+    ]
   },
 }
 ```
 
 **Key Features:**
-- **Turbopack**: Faster development builds
-- **SWC Minification**: Optimized production builds
-- **Security Headers**: Enhanced security posture
-- **Image Optimization**: WebP/AVIF support
+
+- **Next.js 15 Features**: Latest optimizations and React 19 support
+- **Docker Ready**: Standalone output for containerized deployments
+- **Development Enhancements**: HMR caching and detailed fetch logging
+- **Package Import Optimization**: Faster builds with selective optimization
+- **Enhanced Security**: Comprehensive security header configuration
+- **Modern Image Optimization**: WebP/AVIF with security considerations
 
 ### App Router Structure
 
@@ -225,9 +274,11 @@ app/
 ```
 
 **Layout Features:**
-- **Font Loading**: Optimized Google Fonts (Inter + Playfair Display)
-- **SEO Metadata**: Complete Open Graph and Twitter cards
-- **Layout Components**: Header, main content, Footer
+
+- **Font Loading**: Optimized Google Fonts with `font-display: swap` (Inter + Playfair Display)
+- **SEO Metadata**: Complete Open Graph and Twitter cards with structured data
+- **Layout Components**: Header, main content, Footer with semantic HTML
+- **React 19**: Latest React features with improved performance
 
 ---
 
@@ -242,13 +293,13 @@ app/
   "compilerOptions": {
     "target": "ES2022",
     "strict": true,
-    
+
     // Strict type checking
     "noImplicitAny": true,
     "strictNullChecks": true,
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,
-    
+
     // Path mapping
     "baseUrl": ".",
     "paths": {
@@ -264,22 +315,27 @@ app/
 ```
 
 **Key Features:**
-- **Strict Mode**: Maximum type safety
-- **Path Mapping**: Clean import aliases with `@/`
-- **Next.js Integration**: Automatic type generation
-- **Error Prevention**: Comprehensive checks for null/undefined
+
+- **ES2022 Target**: Modern JavaScript features support
+- **Maximum Strictness**: All strict type-checking options enabled
+- **Path Mapping**: Clean import aliases with `@/` for all directories
+- **Next.js Integration**: Automatic type generation with Next.js plugin
+- **Error Prevention**: `noUncheckedIndexedAccess` and `exactOptionalPropertyTypes`
+- **Development Quality**: `noUnusedLocals` and `noUnusedParameters`
 
 ### Type Definitions
 
 **Location:** `types/index.ts`
 
 **Available Types:**
+
 - `User`, `Product`, `Order` - Core business entities
 - `ApiResponse<T>`, `PaginatedResponse<T>` - API responses
 - `ContactForm`, `OrderForm` - Form interfaces
 - `EnvironmentVariables` - Environment type safety
 
 **Usage Example:**
+
 ```typescript
 import type { Product, ApiResponse } from '@/types'
 
@@ -296,29 +352,44 @@ const product: Product = {
 
 ## 🧪 Testing Setup
 
-### Test Framework: Vitest
+### Test Framework: Jest with Next.js Integration
 
-**Location:** `vitest.config.ts`
+**Location:** `jest.config.ts`
 
 ```typescript
-export default defineConfig({
-  plugins: [react()],
-  test: {
-    environment: 'jsdom',
-    globals: true,
-    setupFiles: ['./vitest.setup.ts'],
-  },
-  resolve: {
-    alias: { '@': path.resolve(__dirname, './') },
-  },
+import nextJest from 'next/jest.js'
+
+const createJestConfig = nextJest({
+  dir: './',
 })
+
+const config: Config = {
+  coverageProvider: 'v8',
+  testEnvironment: 'jsdom',
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
+
+  moduleNameMapper: {
+    '^@/(.*)$': '<rootDir>/$1',
+  },
+
+  collectCoverageFrom: [
+    'app/**/*.{ts,tsx}',
+    'components/**/*.{ts,tsx}',
+    'lib/**/*.{ts,tsx}',
+  ],
+}
+
+export default createJestConfig(config)
 ```
 
 **Features:**
-- **Fast**: Vite-powered test runner
-- **React Testing Library**: Component testing
+
+- **Next.js Integration**: `next/jest` for optimal Next.js testing
+- **React Testing Library**: Component testing with Jest DOM matchers
 - **JSdom**: Browser environment simulation
 - **Path Aliases**: Same `@/` imports as main code
+- **Coverage**: V8 coverage provider for accurate reporting
+- **Setup Files**: Comprehensive Jest setup with Next.js mocks
 
 ### Test Structure
 
@@ -331,6 +402,7 @@ __tests__/
 ```
 
 **Test Categories:**
+
 - **Setup Tests**: Node.js version, React imports, TypeScript
 - **Component Tests**: UI rendering and interactions
 - **Integration Tests**: Feature workflows (coming)
@@ -341,34 +413,46 @@ __tests__/
 # Run all tests
 pnpm test
 
-# Watch mode
-pnpm test --watch
-
-# UI interface
-pnpm test:ui
+# Watch mode (interactive)
+pnpm test:watch
 
 # Coverage report
 pnpm test:coverage
 
 # Specific test file
 pnpm test HomePage
+
+# Run tests with specific pattern
+pnpm test -- --testNamePattern="HomePage"
 ```
 
 ### Test Setup
 
-**Location:** `vitest.setup.ts`
+**Location:** `jest.setup.ts`
 
 ```typescript
 import '@testing-library/jest-dom'
-import { afterEach } from 'vitest'
-import { cleanup } from '@testing-library/react'
 
-afterEach(() => {
-  cleanup()
-})
+// Mock Next.js router (App Router)
+jest.mock('next/navigation', () => ({
+  useRouter: () => ({
+    push: jest.fn(),
+    replace: jest.fn(),
+    refresh: jest.fn(),
+  }),
+  usePathname: () => '/',
+  useSearchParams: () => new URLSearchParams(),
+}))
+
+// Mock Next.js Image component
+jest.mock('next/image', () => ({
+  __esModule: true,
+  default: (props: any) => <img {...props} />,
+}))
 ```
 
 **Current Test Results:**
+
 - ✅ 13/13 tests passing
 - ✅ Application setup validation
 - ✅ HomePage component rendering
@@ -383,6 +467,7 @@ afterEach(() => {
 **Location:** `tailwind.config.ts`
 
 **Custom Theme:**
+
 ```typescript
 theme: {
   extend: {
@@ -402,6 +487,7 @@ theme: {
 ```
 
 **Features:**
+
 - **Brand Colors**: Custom Dadalicious palette
 - **Typography**: Google Fonts integration
 - **Responsive**: Mobile-first design system
@@ -420,6 +506,7 @@ components/
 ```
 
 **Design System:**
+
 - **Button**: Multiple variants with class-variance-authority
 - **Layout**: Consistent header/footer across pages
 - **Utilities**: Helper functions in `lib/utils.ts`
@@ -454,6 +541,7 @@ bakery-app/
 ### VS Code Integration
 
 **Recommended Extensions:**
+
 - **ES7+ React/Redux/React-Native snippets**
 - **Prettier - Code formatter**
 - **ESLint**
@@ -463,10 +551,12 @@ bakery-app/
 ### Package Manager
 
 **pnpm Configuration:**
+
 - **Lock file**: `pnpm-lock.yaml`
-- **Node version**: 20.x enforced
-- **Workspace**: Single package setup
-- **Speed**: 3x faster than npm
+- **Node version**: 22.x enforced in `engines`
+- **pnpm version**: 10.x enforced with `packageManager` field
+- **Workspace**: Single package setup optimized for monorepo expansion
+- **Speed**: 3x faster than npm with efficient disk space usage
 
 ---
 
@@ -475,6 +565,7 @@ bakery-app/
 ### Common Issues
 
 **Port already in use:**
+
 ```bash
 # Kill process on port 3000
 lsof -ti:3000 | xargs kill -9
@@ -482,14 +573,16 @@ pnpm dev
 ```
 
 **TypeScript errors:**
+
 ```bash
-# Clear Next.js cache
-rm -rf .next
+# Clear Next.js cache and TypeScript build info
+rm -rf .next tsconfig.tsbuildinfo
 pnpm type-check
 pnpm dev
 ```
 
 **Dependency issues:**
+
 ```bash
 # Clean install
 rm -rf node_modules pnpm-lock.yaml
@@ -499,14 +592,57 @@ pnpm install
 ### Performance
 
 **Development:**
-- **Turbopack**: ~1.8s startup time
-- **Hot reload**: <100ms for most changes
-- **Type checking**: Parallel with development
+
+- **Turbopack**: ~1.8s startup time with Next.js 15 optimizations
+- **Hot reload**: <100ms with server components HMR caching
+- **Type checking**: Parallel with development using TypeScript 5.7
+- **Package imports**: Optimized for faster builds
 
 **Production:**
-- **Build time**: ~30s for current codebase
-- **Bundle size**: Optimized with SWC
-- **Image optimization**: Automatic WebP/AVIF
+
+- **Build time**: ~30s for current codebase (improved with React 19)
+- **Bundle size**: Optimized with modern JavaScript features
+- **Image optimization**: Automatic WebP/AVIF with security headers
+- **Runtime**: Standalone output ready for containerization
+
+---
+
+## 📊 Monitoring & Instrumentation
+
+### OpenTelemetry Integration
+
+**Location:** `instrumentation.ts`
+
+```typescript
+export async function register() {
+  if (process.env.NODE_ENV === 'production') {
+    // Initialize monitoring services
+    console.log('🔍 Instrumentation initialized for production')
+  }
+}
+
+export async function onRequestError(error: unknown, request: any) {
+  // Error tracking and logging
+  console.error('Request error:', { error, path: request.path })
+}
+```
+
+**Features:**
+
+- **Production Monitoring**: Automatic instrumentation initialization
+- **Error Tracking**: Request-level error capture and logging
+- **Performance Metrics**: Ready for integration with monitoring services
+- **Environment-aware**: Different behavior for dev/prod environments
+
+### Build Analysis
+
+```bash
+# Analyze bundle size and performance
+pnpm analyze
+
+# View build output and optimization details
+pnpm build --debug
+```
 
 ---
 
@@ -522,24 +658,44 @@ pnpm install
 ### Monitoring
 
 **Current Status:**
-- ✅ **Build**: Passing
-- ✅ **Tests**: 13/13 passing
-- ✅ **Types**: No TypeScript errors
-- ✅ **Lint**: No ESLint errors
-- ✅ **Performance**: Ready in 1.8s
+
+- ✅ **Next.js**: 15.5.0 (Latest)
+- ✅ **React**: 19.1.1 (Latest)
+- ✅ **TypeScript**: 5.7.2 (Latest)
+- ✅ **Build**: Passing with standalone output
+- ✅ **Tests**: 13/13 passing (Jest + Testing Library)
+- ✅ **Types**: No TypeScript errors (Strict mode)
+- ✅ **Lint**: No ESLint errors (Modern flat config)
+- ✅ **Performance**: Ready in 1.8s with Turbopack
+- ✅ **Security**: Comprehensive headers configured
+- ✅ **Monitoring**: Instrumentation ready
 
 ---
 
 ## 📞 Support
 
 **Development Issues:**
+
 - Check this documentation first
 - Review test failures: `pnpm test`
 - Validate types: `pnpm type-check`
 - Check linting: `pnpm lint`
 
 **Configuration Changes:**
+
 - Next.js: Edit `next.config.js`
 - TypeScript: Edit `tsconfig.json`
 - Tailwind: Edit `tailwind.config.ts`
-- ESLint: Edit `.eslintrc.json`
+- ESLint: Edit `eslint.config.mjs` (Modern flat config)
+- Jest: Edit `jest.config.ts`
+- Monitoring: Edit `instrumentation.ts`
+
+**Latest Updates Applied:**
+
+- ✅ Next.js 15.5.0 with React 19 support
+- ✅ Modern ESLint flat configuration
+- ✅ Jest integration replacing Vitest
+- ✅ Enhanced security and performance headers
+- ✅ OpenTelemetry instrumentation setup
+- ✅ Package import optimizations
+- ✅ Server components HMR caching

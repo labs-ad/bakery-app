@@ -3,7 +3,6 @@
  * Verifies basic page rendering and Next.js App Router functionality
  */
 
-import { describe, it, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import HomePage from '@/app/page'
 

@@ -5,7 +5,6 @@ const nextConfig = {
 
   // Production optimizations
   reactStrictMode: true,
-  swcMinify: true,
   compress: true,
   productionBrowserSourceMaps: false,
   poweredByHeader: false, // Remove X-Powered-By header for security
@@ -16,14 +15,31 @@ const nextConfig = {
     minimumCacheTTL: 60,
     dangerouslyAllowSVG: false, // Security: prevent SVG XSS
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
-    domains: [], // Add your image domains here when needed
     remotePatterns: [], // Preferred over domains for better security
   },
 
-  // Experimental optimizations (stable features)
+  // Development optimizations
+  logging: {
+    fetches: {
+      fullUrl: true,
+    },
+  },
+
+  // Experimental optimizations for Next.js 15
   experimental: {
     // Enable modern bundling optimizations
-    optimizePackageImports: ['@/components', '@/lib', '@/hooks'],
+    optimizePackageImports: [
+      '@/components',
+      '@/lib',
+      '@/hooks',
+      'class-variance-authority',
+      'clsx',
+      'tailwind-merge',
+    ],
+    // Better HMR caching for development
+    serverComponentsHmrCache: true,
+    // Enable React Compiler (if available)
+    reactCompiler: true,
   },
 
   // Security headers
