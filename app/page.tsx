@@ -3,7 +3,7 @@ export default function HomePage() {
     <div className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-br from-orange-50 to-pink-50 p-8">
       <div className="mx-auto max-w-4xl text-center">
         <h1 className="mb-6 font-display text-6xl font-bold text-orange-800 lg:text-8xl">
-          Dadalicious Bakery
+          Dadalicious
         </h1>
 
         <p className="mb-8 text-xl font-medium text-orange-700 lg:text-2xl">
