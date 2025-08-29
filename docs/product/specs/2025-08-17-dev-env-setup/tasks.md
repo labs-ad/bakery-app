@@ -79,10 +79,6 @@ These are the tasks to be completed for the spec detailed in @project/specs/2025
 
 **2.4** Design and implement initial database schema
 
-- Create User model with authentication fields
-- Create Session model for session management
-- Define relationships and constraints in schema.prisma
-
 **2.5** Set up database migration system
 
 - Generate initial migration from Prisma schema
@@ -106,8 +102,6 @@ These are the tasks to be completed for the spec detailed in @project/specs/2025
 - Run database connection tests
 - Validate schema migration and rollback
 - Confirm seed data creation and CRUD operations
-
-### 3. Authentication Foundation
 
 **3.1** Write authentication system tests
 

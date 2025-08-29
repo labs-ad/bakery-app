@@ -40,7 +40,6 @@
 - **Database setup with PostgreSQL and Prisma** (M)
 - **Google Cloud Platform project configuration** (M)
 - **CI/CD pipeline with GitHub Actions** (L)
-- **Basic authentication with NextAuth.js** (M)
 
 #### Core Database Schema
 

@@ -22,7 +22,6 @@ Establish a complete development environment for the Makkar Bakers bakery app in
 2. **Local Database Environment** - PostgreSQL setup with Prisma ORM integration and development data seeding
 3. **Google Cloud Platform Configuration** - Project setup with Cloud SQL, Storage, and deployment configurations
 4. **CI/CD Pipeline Implementation** - GitHub Actions workflow for testing, building, and deploying to GCP
-5. **Authentication Foundation** - NextAuth.js setup with basic user management and multiple provider support
 
 ## Out of Scope
 
@@ -35,7 +34,6 @@ Establish a complete development environment for the Makkar Bakers bakery app in
 
 1. New developers can clone the repository and have a fully functional local development environment running within 30 minutes
 2. Code changes automatically trigger CI/CD pipeline with successful deployment to staging environment
-3. Basic user authentication flow works end-to-end from local development through production deployment
 
 ## Spec Documentation
 

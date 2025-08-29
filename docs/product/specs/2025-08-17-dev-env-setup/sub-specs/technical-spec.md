@@ -49,13 +49,6 @@ This is the technical specification for the spec detailed in @project/specs/2025
 
 **Schema Requirements:**
 
-```sql
--- Initial schema structure
-Tables: users, sessions, accounts (NextAuth.js)
-Indexes: Optimized for authentication flows
-Constraints: Foreign keys, unique constraints for data integrity
-```
-
 ### 3. Development Tools
 
 **Package Management:**
@@ -140,39 +133,6 @@ Constraints: Foreign keys, unique constraints for data integrity
 - Health checks and rollback on failure
 - Database migration execution during deployment
 
-### 6. Authentication Setup
-
-**NextAuth.js Configuration:**
-
-- Version 4.x with App Router support
-- JWT strategy for session management
-- Database adapter for user persistence
-- CSRF protection enabled
-
-**Provider Setup:**
-
-- Google OAuth 2.0 provider
-- GitHub OAuth provider
-- Email/password authentication (future)
-- Account linking support
-
-**Session Management:**
-
-- 30-day session expiration
-- Secure HTTP-only cookies
-- Session refresh token rotation
-- User role-based access control foundation
-
-**Database Schema:**
-
-```sql
--- NextAuth.js required tables
-users (id, email, name, image, emailVerified, createdAt, updatedAt)
-accounts (provider, providerAccountId, userId, type, access_token, etc.)
-sessions (sessionToken, userId, expires)
-verification_tokens (identifier, token, expires)
-```
-
 ## Approach
 
 ### Phase 1: Local Development Setup
@@ -182,14 +142,6 @@ verification_tokens (identifier, token, expires)
 3. Set up local PostgreSQL with Docker
 4. Implement Prisma schema and migrations
 5. Configure environment variables and secrets management
-
-### Phase 2: Authentication Foundation
-
-1. Install and configure NextAuth.js
-2. Set up Google and GitHub OAuth providers
-3. Implement user database schema
-4. Create basic authentication UI components
-5. Test authentication flow end-to-end
 
 ### Phase 3: GCP Infrastructure
 
@@ -225,18 +177,7 @@ verification_tokens (identifier, token, expires)
 - **tailwindcss@3.x** - Utility-first CSS framework
 - **@tailwindcss/typography** - Typography plugin for content styling
 
-### Database & ORM
-
-- **prisma@5.x** - Modern database toolkit with type safety
-- **@prisma/client** - Auto-generated database client
-- **pg@8.x** - PostgreSQL client for Node.js
-- **@types/pg** - TypeScript definitions for pg
-
 ### Authentication
-
-- **next-auth@4.x** - Authentication library for Next.js
-- **@next-auth/prisma-adapter** - Prisma adapter for NextAuth.js
-- **@auth/prisma-adapter** - Updated Prisma adapter (if migrating to Auth.js)
 
 ### Development Tools
 
@@ -264,10 +205,6 @@ verification_tokens (identifier, token, expires)
 ### Dependency Justification
 
 **Next.js 14**: Chosen for its App Router architecture, Server Components, and excellent TypeScript integration, providing optimal performance and developer experience for the bakery application.
-
-**Prisma**: Selected for its type-safe database access, automatic migration generation, and excellent TypeScript integration, reducing database-related bugs and improving development velocity.
-
-**NextAuth.js**: Industry-standard authentication solution for Next.js with built-in security features, multiple provider support, and seamless database integration.
 
 **Tailwind CSS**: Utility-first approach enables rapid UI development while maintaining design consistency, with excellent tree-shaking for production builds.
 

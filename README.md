@@ -8,8 +8,8 @@
 
 - Node.js 22.x or higher (required for Tailwind CSS v4)
 - pnpm 10.x or higher
-- PostgreSQL 15+ (for database)
 - Modern browser for development (Safari 16.4+, Chrome 111+, Firefox 128+)
+- Docker (optional, for containerized deployment)
 
 ### Development Setup
 
@@ -21,11 +21,11 @@
    pnpm install
    ```
 
-2. **Environment setup:**
+2. **Environment setup (optional):**
 
    ```bash
    cp .env.example .env.local
-   # Edit .env.local with your configuration
+   # Edit .env.local if needed (currently no required environment variables)
    ```
 
 3. **Start development server:**
@@ -52,21 +52,30 @@
 - `pnpm test` - Run unit tests with Jest
 - `pnpm test:watch` - Run tests in watch mode
 - `pnpm test:coverage` - Run tests with coverage report
-- `pnpm test:e2e` - Run end-to-end tests with Playwright
+- `pnpm test:e2e` - Run end-to-end tests with Playwright (planned)
 - `pnpm build:check` - Complete build validation (type-check + lint + lint:css + build)
 
 ### Tech Stack
 
-- **Framework:** Next.js 15.1.3+ with App Router
-- **Language:** TypeScript 5.7+
-- **Styling:** Tailwind CSS 4.1.12 with CSS-first configuration
+- **Framework:** Next.js 15.1.3 with App Router
+- **Language:** TypeScript 5.7.2
+- **Runtime:** React 19.0.0
+- **Styling:** Tailwind CSS v4.1.12 with CSS-first configuration
 - **Theme:** Sugar Bliss custom design system
-- **Database:** PostgreSQL with Prisma ORM
-- **Authentication:** NextAuth.js
-- **Testing:** Jest + React Testing Library + Playwright
-- **Deployment:** Google Cloud Platform
-- **Package Manager:** pnpm 10+
-- **Node Version:** 22+ (required for Tailwind v4)
+- **Testing:** Jest 29.7.0 + React Testing Library 16.1.0
+- **Package Manager:** pnpm 10.14.0
+- **Node Version:** 22+ (Alpine Linux in Docker)
+- **Deployment:** Docker-ready with multi-stage builds
+
+#### Current Implementation Status
+- ✅ **Frontend:** Modern Next.js with React 19 Server Components
+- ✅ **Styling:** Complete Tailwind CSS v4 design system
+- ✅ **Components:** Header, Footer, Button, and card utilities
+- ✅ **Development:** Full linting, testing, and quality tools
+- ✅ **Deployment:** Docker containerization with health checks
+- 🔄 **Database:** PostgreSQL with Prisma ORM (planned)
+- 🔄 **E-commerce:** Product catalog and ordering (planned)
+- 🔄 **Authentication:** User management (planned)
 
 ### Tailwind CSS v4 Configuration
 
@@ -90,17 +99,28 @@ This project uses **Tailwind CSS v4** with a CSS-first configuration approach:
 ```
 bakery-app/
 ├── app/                    # Next.js App Router
+│   ├── api/               # API routes
+│   │   └── health/        # Health check endpoint
 │   ├── globals.css        # Global styles + Tailwind v4 theme configuration
-│   ├── layout.tsx         # Root layout
-│   └── page.tsx           # Home page
-├── components/            # Reusable components
+│   ├── layout.tsx         # Root layout with font loading
+│   └── page.tsx           # Home page component
+├── components/            # Reusable React components
+│   ├── layout/           # Layout components (Header, Footer)
+│   ├── ui/               # UI components (Button)
+│   └── index.ts          # Component exports
 ├── lib/                   # Utility functions
-├── prisma/               # Database schema and migrations
+│   └── utils.ts          # Helper utilities (minimal)
+├── types/                # TypeScript type definitions
+│   └── index.ts          # Global type definitions
 ├── public/               # Static assets
-├── docs/                  # Technical documentation
-│   └── tech/             # Architecture and configuration docs
+│   └── robots.txt        # SEO configuration
+├── docs/                 # Documentation
+│   ├── product/          # Product specifications
+│   └── tech/             # Technical documentation
 ├── __tests__/            # Test files
-└── project/              # Project documentation
+│   └── components/       # Component tests
+├── Dockerfile            # Multi-stage production build
+└── project/              # Project management
     └── specs/            # Feature specifications
 ```
 
@@ -125,8 +145,9 @@ pnpm test:e2e
 ### Test Structure
 
 - Unit tests: `__tests__/**/*.test.{ts,tsx}`
-- E2E tests: `e2e/**/*.spec.ts`
-- Test setup: `vitest.setup.ts`
+- Test setup: `jest.setup.ts`
+- Jest config: `jest.config.ts`
+- E2E tests: Planned with Playwright
 
 ## 📝 Code Quality
 
@@ -151,28 +172,50 @@ Automatically runs on `git commit`:
 
 ### Environment Variables
 
-Required environment variables (see `.env.example`):
+Currently no required environment variables for basic functionality.
 
-- `DATABASE_URL` - PostgreSQL connection string
-- `NEXTAUTH_SECRET` - Authentication secret
-- `GOOGLE_CLOUD_PROJECT_ID` - GCP project ID
-- `STRIPE_SECRET_KEY` - Payment processing
+Optional environment variables (see `.env.example`):
+
+- `NODE_ENV` - Environment mode (production/development)
+- `NEXT_TELEMETRY_DISABLED` - Disable Next.js telemetry
+- Future: Database, payment processing, and cloud service variables
 
 ### Build and Deploy
 
+#### Local Development
 ```bash
-# Build for production
+# Development server
+pnpm dev
+
+# Production build
 pnpm build
 
 # Start production server
 pnpm start
+
+# Full build check (recommended before deployment)
+pnpm build:check
+```
+
+#### Docker Deployment
+```bash
+# Build Docker image
+docker build -t bakery-app:latest .
+
+# Run container
+docker run -p 3000:3000 bakery-app:latest
+
+# Health check
+curl http://localhost:3000/api/health
 ```
 
 ## 📖 Documentation
 
-- [Project Specs](./project/specs/) - Feature specifications
-- [API Documentation](./docs/api/) - API reference
-- [Deployment Guide](./docs/deployment/) - Deployment instructions
+- [Technical Stack](./docs/tech/tech-stack.md) - Complete technical overview
+- [Tailwind CSS v4 Guide](./docs/tech/tailwind-config.md) - Styling system documentation
+- [Deployment Guide](./docs/tech/DEPLOYMENT_GUIDE.md) - Google Cloud Platform deployment
+- [How-To Guides](./docs/tech/HOW_TO.md) - Docker and development guides
+- [Project Specs](./project/specs/) - Feature specifications and roadmap
 
 ## 🤝 Contributing
 

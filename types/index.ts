@@ -107,12 +107,6 @@ export interface OrderForm {
 // Environment variables
 export interface EnvironmentVariables {
   DATABASE_URL: string
-  NEXTAUTH_SECRET: string
-  NEXTAUTH_URL: string
-  GOOGLE_CLIENT_ID: string
-  GOOGLE_CLIENT_SECRET: string
-  GITHUB_CLIENT_ID: string
-  GITHUB_CLIENT_SECRET: string
   STRIPE_PUBLISHABLE_KEY: string
   STRIPE_SECRET_KEY: string
   GOOGLE_CLOUD_PROJECT_ID: string
