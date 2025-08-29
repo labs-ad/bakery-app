@@ -1,37 +1,179 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
-@layer base {
-  html {
-    font-family: var(--font-inter), system-ui, sans-serif;
+@theme {
+  /* Font Family */
+  --font-poppins: var(--font-poppins), system-ui, sans-serif;
+  --font-proza-libre: var(--font-proza-libre), system-ui, sans-serif;
+
+  /* Sugar Bliss Color Palette */
+  --color-primary-50: #fef7f0;
+  --color-primary-100: #fceee1;
+  --color-primary-200: #f8dac3;
+  --color-primary-300: #f3c49f;
+  --color-primary-400: #e89bb5;
+  --color-primary-500: #e4739a;
+  --color-primary-600: #d8527f;
+  --color-primary-700: #c1406a;
+  --color-primary-800: #a03558;
+  --color-primary-900: #852d4a;
+  --color-primary-950: #481525;
+
+  /* Mint Green Accent */
+  --color-secondary-50: #f0fdf9;
+  --color-secondary-100: #ccfbef;
+  --color-secondary-200: #99f6e0;
+  --color-secondary-300: #5de9ce;
+  --color-secondary-400: #2dd4bf;
+  --color-secondary-500: #a8d5ba;
+  --color-secondary-600: #14b8a6;
+  --color-secondary-700: #0f928b;
+  --color-secondary-800: #115e59;
+  --color-secondary-900: #134e4a;
+  --color-secondary-950: #042f2e;
+
+  /* Soft Background Pink */
+  --color-background-50: #fdfcfc;
+  --color-background-100: #f8f0f5;
+  --color-background-200: #f1e5ed;
+  --color-background-300: #e8d5e0;
+  --color-background-400: #dcc1d0;
+  --color-background-500: #cdaab8;
+  --color-background-600: #b8909f;
+  --color-background-700: #a07888;
+  --color-background-800: #85646f;
+  --color-background-900: #6e535b;
+  --color-background-950: #3f2e33;
+
+  /* Refined Neutrals */
+  --color-neutral-50: #fafafa;
+  --color-neutral-100: #f4f4f5;
+  --color-neutral-200: #e4e4e7;
+  --color-neutral-300: #d4d4d8;
+  --color-neutral-400: #a1a1aa;
+  --color-neutral-500: #71717a;
+  --color-neutral-600: #52525b;
+  --color-neutral-700: #3f3f46;
+  --color-neutral-800: #27272a;
+  --color-neutral-900: #18181b;
+  --color-neutral-950: #09090b;
+
+  /* Custom Spacing */
+  --spacing-18: 4.5rem;
+  --spacing-22: 5.5rem;
+  --spacing-88: 22rem;
+  --spacing-128: 32rem;
+
+  /* Custom Shadows */
+  --shadow-soft:
+    0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -1px rgb(0 0 0 / 0.03);
+  --shadow-medium:
+    0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.05);
+  --shadow-strong:
+    0 20px 25px -5px rgb(0 0 0 / 0.1), 0 10px 10px -5px rgb(0 0 0 / 0.04);
+
+  /* Custom Border Radius */
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-3xl: 2rem;
+
+  /* Custom Animations */
+  --animate-fade-in: fadeIn 0.5s ease-in-out;
+  --animate-slide-up: slideUp 0.3s ease-out;
+  --animate-bounce-slow: bounce 2s infinite;
+}
+
+/* Base styles */
+html {
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+.font-display {
+  font-family: var(--font-proza-libre), serif;
+}
+
+body {
+  background: linear-gradient(
+    to bottom right,
+    var(--color-background-50),
+    var(--color-background-100)
+  );
+  color: var(--color-neutral-900);
+  min-height: 100vh;
+}
+
+/* Sugar Bliss Component Utilities */
+@utility btn-primary {
+  border-radius: var(--radius-2xl);
+  background-color: var(--color-secondary-600);
+  padding: 0.75rem 2rem;
+  font-weight: 600;
+  color: white;
+  box-shadow: var(--shadow-soft);
+  transition: all 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--color-secondary-700);
+    box-shadow: var(--shadow-medium);
+    transform: scale(0.95);
   }
 
-  .font-display {
-    font-family: var(--font-playfair), serif;
-  }
-
-  body {
-    @apply bg-white text-gray-900;
+  &:active {
+    transform: scale(0.9);
   }
 }
 
-@layer components {
-  .btn-primary {
-    @apply rounded-lg bg-orange-600 px-8 py-3 font-semibold text-white transition-colors duration-200 hover:bg-orange-700;
+@utility btn-secondary {
+  border-radius: var(--radius-2xl);
+  border: 2px solid var(--color-primary-400);
+  padding: 0.75rem 2rem;
+  font-weight: 600;
+  color: var(--color-primary-600);
+  box-shadow: var(--shadow-soft);
+  transition: all 0.3s ease;
+  background-color: transparent;
+
+  &:hover {
+    background-color: var(--color-primary-400);
+    color: white;
+    box-shadow: var(--shadow-medium);
+    transform: scale(0.95);
   }
 
-  .btn-secondary {
-    @apply rounded-lg border-2 border-orange-600 px-8 py-3 font-semibold text-orange-600 transition-colors duration-200 hover:bg-orange-600 hover:text-white;
-  }
-
-  .card {
-    @apply rounded-lg bg-white/80 p-6 shadow-md backdrop-blur-sm;
+  &:active {
+    transform: scale(0.9);
   }
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+@utility card {
+  border-radius: var(--radius-2xl);
+  background-color: rgb(255 255 255 / 0.9);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--color-primary-100);
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow: var(--shadow-medium);
+    background-color: rgb(255 255 255 / 0.95);
   }
+}
+
+@utility hero-card {
+  border-radius: var(--radius-3xl);
+  background: linear-gradient(
+    to bottom right,
+    rgb(255 255 255 / 0.95),
+    var(--color-background-50)
+  );
+  padding: 2rem;
+  box-shadow: var(--shadow-medium);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--color-primary-100);
+}
+
+/* Utilities */
+.text-balance {
+  text-wrap: balance;
 }

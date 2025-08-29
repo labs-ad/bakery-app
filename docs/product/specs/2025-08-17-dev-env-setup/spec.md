@@ -6,7 +6,7 @@
 
 ## Overview
 
-Establish a complete development environment for the Dadalicious bakery app including local Next.js setup, PostgreSQL database, Google Cloud Platform configuration, CI/CD pipeline, and basic authentication to enable efficient development and deployment workflows.
+Establish a complete development environment for the Makkar Bakers bakery app including local Next.js setup, PostgreSQL database, Google Cloud Platform configuration, CI/CD pipeline, and basic authentication to enable efficient development and deployment workflows.
 
 ## User Stories
 

@@ -13,8 +13,8 @@ export function Header() {
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
-            <span className="font-display text-2xl font-bold text-primary-600">
-              Dadalicious
+            <span className="font-poppins text-primary-600 text-2xl font-bold">
+              MB
             </span>
           </Link>
 
@@ -22,25 +22,25 @@ export function Header() {
           <nav className="hidden items-center space-x-8 md:flex">
             <Link
               href="/menu"
-              className="text-neutral-600 transition-colors hover:text-primary-600"
+              className="hover:text-primary-600 text-neutral-600 transition-colors"
             >
               Menu
             </Link>
             <Link
               href="/about"
-              className="text-neutral-600 transition-colors hover:text-primary-600"
+              className="hover:text-primary-600 text-neutral-600 transition-colors"
             >
               About
             </Link>
             <Link
               href="/contact"
-              className="text-neutral-600 transition-colors hover:text-primary-600"
+              className="hover:text-primary-600 text-neutral-600 transition-colors"
             >
               Contact
             </Link>
             <Link
               href="/orders"
-              className="text-neutral-600 transition-colors hover:text-primary-600"
+              className="hover:text-primary-600 text-neutral-600 transition-colors"
             >
               Orders
             </Link>
@@ -48,15 +48,14 @@ export function Header() {
 
           {/* Desktop Actions */}
           <div className="hidden items-center space-x-4 md:flex">
-            <Button variant="ghost" size="sm">
-              Sign In
+            <Button variant="primary" size="sm">
+              Order Now
             </Button>
-            <Button size="sm">Order Now</Button>
           </div>
 
           {/* Mobile Menu Button */}
           <button
-            className="p-2 text-neutral-600 hover:text-primary-600 md:hidden"
+            className="hover:text-primary-600 p-2 text-neutral-600 md:hidden"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -91,37 +90,36 @@ export function Header() {
             <nav className="flex flex-col space-y-4">
               <Link
                 href="/menu"
-                className="text-neutral-600 transition-colors hover:text-primary-600"
+                className="hover:text-primary-600 text-neutral-600 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Menu
               </Link>
               <Link
                 href="/about"
-                className="text-neutral-600 transition-colors hover:text-primary-600"
+                className="hover:text-primary-600 text-neutral-600 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 About
               </Link>
               <Link
                 href="/contact"
-                className="text-neutral-600 transition-colors hover:text-primary-600"
+                className="hover:text-primary-600 text-neutral-600 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Contact
               </Link>
               <Link
                 href="/orders"
-                className="text-neutral-600 transition-colors hover:text-primary-600"
+                className="hover:text-primary-600 text-neutral-600 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Orders
               </Link>
               <div className="flex flex-col space-y-2 pt-4">
-                <Button variant="ghost" size="sm">
-                  Sign In
+                <Button variant="primary" size="sm">
+                  Order Now
                 </Button>
-                <Button size="sm">Order Now</Button>
               </div>
             </nav>
           </div>

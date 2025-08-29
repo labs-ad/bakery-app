@@ -1,4 +1,4 @@
-# Dadalicious Bakery E-commerce Development Roadmap
+# Makkar Bakers E-commerce Development Roadmap
 
 > Last Updated: 2025-08-16
 > Version: 1.0.0
@@ -13,6 +13,7 @@
 **Post-Launch Optimization:** Weeks 13-16
 
 ## Effort Scale Reference
+
 - **XS:** 1-4 hours
 - **S:** 4-16 hours (1-2 days)
 - **M:** 16-40 hours (1 week)
@@ -24,7 +25,8 @@
 ## Phase 1: MVP Foundation (Weeks 1-4)
 
 **Goal:** Launch a functional e-commerce platform that allows customers to browse, order, and pay for cakes
-**Success Criteria:** 
+**Success Criteria:**
+
 - Complete order flow from browse to payment
 - Admin panel for basic order management
 - 5 core cake products available for purchase
@@ -33,6 +35,7 @@
 ### Week 1-2: Project Setup & Core Infrastructure
 
 #### Development Environment Setup
+
 - **Next.js 14 application setup with TypeScript** (S)
 - **Database setup with PostgreSQL and Prisma** (M)
 - **Google Cloud Platform project configuration** (M)
@@ -40,6 +43,7 @@
 - **Basic authentication with NextAuth.js** (M)
 
 #### Core Database Schema
+
 - **Product catalog schema (products, categories, variants)** (M)
 - **User management schema** (S)
 - **Order processing schema** (M)
@@ -52,6 +56,7 @@
 ### Week 3-4: Core E-commerce Features
 
 #### Product Catalog
+
 - **Product listing page with filtering** (L)
 - **Individual product detail pages** (M)
 - **Image gallery with Next.js Image optimization** (M)
@@ -59,6 +64,7 @@
 - **Category navigation** (S)
 
 #### Shopping Cart & Checkout
+
 - **Add to cart functionality** (M)
 - **Shopping cart management (add/remove/update)** (M)
 - **Checkout flow with form validation** (L)
@@ -66,6 +72,7 @@
 - **Order confirmation and email notifications** (M)
 
 #### Admin Foundation
+
 - **Basic admin dashboard** (M)
 - **Product management (CRUD operations)** (L)
 - **Order listing and basic status updates** (M)
@@ -78,8 +85,9 @@
 
 ## Phase 2: Differentiation Features (Weeks 5-8)
 
-**Goal:** Implement features that differentiate Dadalicious from competitors
+**Goal:** Implement features that differentiate Makkar Bakers from competitors
 **Success Criteria:**
+
 - Delivery scheduling system operational
 - Gift ordering with messages functional
 - Customer accounts with order history
@@ -88,18 +96,21 @@
 ### Week 5-6: Delivery Scheduling & Customer Accounts
 
 #### Delivery Scheduling System
+
 - **Calendar-based delivery date selection** (L)
 - **Time slot management and availability** (L)
 - **Delivery area validation and mapping** (M)
 - **Integration with order processing workflow** (M)
 
 #### Customer Account Management
+
 - **User registration and profile management** (M)
 - **Order history and reordering functionality** (M)
 - **Address book management** (S)
 - **Email preferences and notifications** (S)
 
 #### Enhanced Product Features
+
 - **Product customization options (size, flavors)** (L)
 - **Allergen information and dietary filters** (M)
 - **Nutritional information display** (S)
@@ -112,6 +123,7 @@
 ### Week 7-8: Gift Features & Mobile Optimization
 
 #### Gift Ordering System
+
 - **Gift message functionality** (M)
 - **Send to different address option** (S)
 - **Gift packaging options** (M)
@@ -119,12 +131,14 @@
 - **Recipient notification system** (M)
 
 #### Mobile Experience
+
 - **Responsive design optimization** (L)
 - **Touch-friendly cart interaction** (M)
 - **Mobile payment optimization** (M)
 - **Progressive Web App (PWA) setup** (M)
 
 #### Enhanced Admin Features
+
 - **Delivery schedule management** (M)
 - **Customer management interface** (S)
 - **Gift order handling workflow** (M)
@@ -140,6 +154,7 @@
 
 **Goal:** Optimize for performance, add inventory management, and prepare for launch
 **Success Criteria:**
+
 - Sub-3 second page load times
 - Inventory management integrated
 - Production deployment ready
@@ -148,6 +163,7 @@
 ### Week 9-10: Performance Optimization & Inventory
 
 #### Performance & Optimization
+
 - **Image optimization and CDN setup** (M)
 - **Database query optimization** (M)
 - **Caching implementation (Redis)** (L)
@@ -155,6 +171,7 @@
 - **SEO optimization and metadata** (M)
 
 #### Inventory Management
+
 - **Real-time inventory tracking** (L)
 - **Low stock alerts and notifications** (M)
 - **Batch and expiration date tracking** (M)
@@ -162,6 +179,7 @@
 - **Inventory forecasting reports** (S)
 
 #### Production Readiness
+
 - **Environment-specific configurations** (S)
 - **Security hardening and compliance checks** (M)
 - **Error monitoring with Sentry** (S)
@@ -174,6 +192,7 @@
 ### Week 11-12: Advanced Order Management & Launch Prep
 
 #### Advanced Order Management
+
 - **Order workflow automation** (L)
 - **Kitchen display system integration** (M)
 - **Bulk order processing for events** (M)
@@ -181,6 +200,7 @@
 - **Advanced notification system (SMS/Email)** (M)
 
 #### Customer Support & Quality Assurance
+
 - **Customer support ticket system** (M)
 - **FAQ and help documentation** (S)
 - **Comprehensive testing suite** (L)
@@ -188,6 +208,7 @@
 - **Launch checklist completion** (S)
 
 #### Analytics & Monitoring
+
 - **Google Analytics 4 integration** (S)
 - **E-commerce tracking setup** (M)
 - **Business intelligence dashboard** (M)
@@ -203,6 +224,7 @@
 
 **Goal:** Implement features for business growth and customer retention
 **Success Criteria:**
+
 - Customer loyalty program launched
 - Marketing automation operational
 - Business intelligence reporting available
@@ -211,18 +233,21 @@
 ### Week 13-14: Customer Retention & Marketing
 
 #### Loyalty Program
+
 - **Points-based reward system** (L)
 - **Referral program implementation** (M)
 - **Customer segmentation and targeting** (M)
 - **Automated loyalty communications** (M)
 
 #### Marketing Automation
+
 - **Email marketing campaign system** (L)
 - **Social media integration** (S)
 - **SEO content management** (M)
 - **Customer lifecycle automation** (M)
 
 #### Enhanced Analytics
+
 - **Customer behavior analytics** (M)
 - **Revenue and profitability reporting** (M)
 - **Inventory optimization analytics** (S)
@@ -235,18 +260,21 @@
 ### Week 15-16: Advanced Features & Future Planning
 
 #### Advanced E-commerce Features
+
 - **Subscription ordering for regular customers** (L)
 - **Corporate account management** (M)
 - **Advanced product recommendations** (M)
 - **Multi-location delivery expansion** (M)
 
 #### Business Intelligence
+
 - **Executive dashboard with KPIs** (M)
 - **Predictive analytics for demand forecasting** (L)
 - **Financial reporting integration** (M)
 - **Customer lifetime value analysis** (S)
 
 #### Future-Proofing
+
 - **API documentation for third-party integrations** (S)
 - **Microservices architecture planning** (M)
 - **International expansion framework** (L)
@@ -261,22 +289,25 @@
 ## Risk Assessment & Mitigation
 
 ### High-Risk Areas
+
 1. **Stripe Payment Integration**: Complex error handling and edge cases
-   - *Mitigation*: Extensive testing, sandbox environment, fallback options
+   - _Mitigation_: Extensive testing, sandbox environment, fallback options
 2. **Delivery Scheduling Logic**: Complex business rules and validation
-   - *Mitigation*: Prototype early, stakeholder validation, flexible configuration
+   - _Mitigation_: Prototype early, stakeholder validation, flexible configuration
 3. **Performance at Scale**: Database and application performance under load
-   - *Mitigation*: Load testing, caching strategy, monitoring implementation
+   - _Mitigation_: Load testing, caching strategy, monitoring implementation
 
 ### Medium-Risk Areas
+
 1. **Mobile UX Complexity**: Ensuring smooth mobile experience
-   - *Mitigation*: Progressive enhancement, mobile-first design, user testing
+   - _Mitigation_: Progressive enhancement, mobile-first design, user testing
 2. **Inventory Synchronization**: Real-time inventory management
-   - *Mitigation*: Event-driven architecture, conflict resolution, manual overrides
+   - _Mitigation_: Event-driven architecture, conflict resolution, manual overrides
 3. **Third-party Integrations**: Dependencies on external services
-   - *Mitigation*: Service abstraction layers, graceful degradation, monitoring
+   - _Mitigation_: Service abstraction layers, graceful degradation, monitoring
 
 ### Dependencies
+
 - **External Services**: Stripe, SendGrid, Google Cloud Platform, Twilio
 - **Business Decisions**: Product catalog finalization, delivery areas, pricing
 - **Content Creation**: Product photography, descriptions, marketing copy
@@ -285,24 +316,28 @@
 ## Success Metrics by Phase
 
 ### Phase 1 (MVP) Metrics
+
 - Basic order flow completion rate: >90%
 - Payment processing success rate: >98%
 - Page load time: <5 seconds
 - Critical bug count: <5
 
 ### Phase 2 (Differentiation) Metrics
+
 - Mobile conversion rate: >70% of desktop
 - Gift order completion rate: >85%
 - Customer registration rate: >40%
 - Delivery scheduling adoption: >60%
 
 ### Phase 3 (Scale) Metrics
+
 - Page load time: <3 seconds
 - Order processing automation: >80%
 - Inventory accuracy: >95%
 - Customer satisfaction: >4.5/5
 
 ### Phase 4 (Growth) Metrics
+
 - Customer retention rate: >60%
 - Loyalty program adoption: >30%
 - Average order value increase: >15%
@@ -311,14 +346,16 @@
 ## Resource Allocation
 
 ### Development Team
+
 - **Lead Developer**: Full-stack development, architecture decisions, deployment
 - **Junior Developer** (if available): Frontend components, testing, documentation
 - **Designer/Stakeholder**: UI/UX review, business logic validation, content management
 
 ### Budget Considerations
+
 - **Infrastructure**: ~$200-500/month (GCP, domain, monitoring)
 - **Third-party Services**: ~$100-300/month (Stripe, SendGrid, etc.)
 - **Development Tools**: ~$50-100/month (monitoring, analytics)
 - **Total Monthly**: ~$350-900/month operational costs
 
-This roadmap provides a structured approach to building the Dadalicious bakery e-commerce platform, balancing speed to market with long-term scalability and business differentiation.
+This roadmap provides a structured approach to building the Makkar Bakers bakery e-commerce platform, balancing speed to market with long-term scalability and business differentiation.

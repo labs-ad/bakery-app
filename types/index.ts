@@ -1,4 +1,4 @@
-// Global type definitions for the Dadalicious Bakery app
+// Global type definitions for the Makkar Bakers app
 
 export interface User {
   id: string

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Inter, Playfair_Display } from 'next/font/google'
+import { Inter, Playfair_Display, Poppins, Proza_Libre } from 'next/font/google'
 import './globals.css'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
@@ -16,28 +16,42 @@ const playfair = Playfair_Display({
   display: 'swap',
 })
 
+const poppins = Poppins({
+  weight: ['400', '500', '600', '700'],
+  subsets: ['latin'],
+  variable: '--font-poppins',
+  display: 'swap',
+})
+
+const prozaLibre = Proza_Libre({
+  weight: ['400', '500', '600', '700', '800'],
+  subsets: ['latin'],
+  variable: '--font-proza-libre',
+  display: 'swap',
+})
+
 export const metadata: Metadata = {
-  title: 'Dadalicious - Handmade Egg-Free Cakes',
+  title: 'Makkar Bakers - Handmade Egg-Free Cakes',
   description:
     'Delicious handmade, egg-free cakes made with local ingredients for your special celebrations.',
   keywords:
     'bakery, egg-free, cakes, handmade, local ingredients, celebrations',
-  authors: [{ name: 'Dadalicious Bakery' }],
-  creator: 'Dadalicious Bakery',
-  publisher: 'Dadalicious Bakery',
+  authors: [{ name: 'Makkar Bakers' }],
+  creator: 'Makkar Bakers',
+  publisher: 'Makkar Bakers',
   metadataBase: new URL('https://dadalicious.com'),
   openGraph: {
-    title: 'Dadalicious - Handmade Egg-Free Cakes',
+    title: 'Makkar Bakers - Handmade Egg-Free Cakes',
     description:
       'Delicious handmade, egg-free cakes made with local ingredients for your special celebrations.',
     url: 'https://dadalicious.com',
-    siteName: 'Dadalicious Bakery',
+    siteName: 'Makkar Bakers',
     images: [
       {
         url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Dadalicious Bakery - Handmade Egg-Free Cakes',
+        alt: 'Makkar Bakers - Handmade Egg-Free Cakes',
       },
     ],
     locale: 'en_US',
@@ -45,7 +59,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Dadalicious - Handmade Egg-Free Cakes',
+    title: 'Makkar Bakers - Handmade Egg-Free Cakes',
     description:
       'Delicious handmade, egg-free cakes made with local ingredients for your special celebrations.',
     images: ['/og-image.jpg'],
@@ -69,7 +83,10 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
+    <html
+      lang="en"
+      className={`${inter.variable} ${playfair.variable} ${poppins.variable} ${prozaLibre.variable}`}
+    >
       <body className="font-sans antialiased">
         <div id="root" className="flex min-h-screen flex-col">
           <Header />

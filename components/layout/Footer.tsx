@@ -7,8 +7,8 @@ export function Footer() {
         <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
           {/* Brand */}
           <div className="space-y-4">
-            <h3 className="font-display text-xl font-bold text-primary-600">
-              Dadalicious
+            <h3 className="font-display text-primary-600 text-xl font-bold">
+              Makkar Bakers
             </h3>
             <p className="text-sm text-neutral-600">
               Handmade, egg-free cakes made with love and local ingredients for
@@ -17,7 +17,7 @@ export function Footer() {
             <div className="flex space-x-4">
               <Link
                 href="#"
-                className="text-neutral-400 transition-colors hover:text-primary-600"
+                className="hover:text-primary-600 text-neutral-400 transition-colors"
                 aria-label="Facebook"
               >
                 <svg
@@ -30,7 +30,7 @@ export function Footer() {
               </Link>
               <Link
                 href="#"
-                className="text-neutral-400 transition-colors hover:text-primary-600"
+                className="hover:text-primary-600 text-neutral-400 transition-colors"
                 aria-label="Instagram"
               >
                 <svg
@@ -50,25 +50,25 @@ export function Footer() {
             <nav className="flex flex-col space-y-2">
               <Link
                 href="/menu"
-                className="text-sm text-neutral-600 transition-colors hover:text-primary-600"
+                className="hover:text-primary-600 text-sm text-neutral-600 transition-colors"
               >
                 Our Menu
               </Link>
               <Link
                 href="/about"
-                className="text-sm text-neutral-600 transition-colors hover:text-primary-600"
+                className="hover:text-primary-600 text-sm text-neutral-600 transition-colors"
               >
                 About Us
               </Link>
               <Link
                 href="/contact"
-                className="text-sm text-neutral-600 transition-colors hover:text-primary-600"
+                className="hover:text-primary-600 text-sm text-neutral-600 transition-colors"
               >
                 Contact
               </Link>
               <Link
                 href="/orders"
-                className="text-sm text-neutral-600 transition-colors hover:text-primary-600"
+                className="hover:text-primary-600 text-sm text-neutral-600 transition-colors"
               >
                 Order Tracking
               </Link>
@@ -81,25 +81,25 @@ export function Footer() {
             <nav className="flex flex-col space-y-2">
               <Link
                 href="/faq"
-                className="text-sm text-neutral-600 transition-colors hover:text-primary-600"
+                className="hover:text-primary-600 text-sm text-neutral-600 transition-colors"
               >
                 FAQ
               </Link>
               <Link
                 href="/shipping"
-                className="text-sm text-neutral-600 transition-colors hover:text-primary-600"
+                className="hover:text-primary-600 text-sm text-neutral-600 transition-colors"
               >
                 Shipping Info
               </Link>
               <Link
                 href="/returns"
-                className="text-sm text-neutral-600 transition-colors hover:text-primary-600"
+                className="hover:text-primary-600 text-sm text-neutral-600 transition-colors"
               >
                 Returns
               </Link>
               <Link
                 href="/privacy"
-                className="text-sm text-neutral-600 transition-colors hover:text-primary-600"
+                className="hover:text-primary-600 text-sm text-neutral-600 transition-colors"
               >
                 Privacy Policy
               </Link>
@@ -122,9 +122,7 @@ export function Footer() {
         </div>
 
         <div className="mt-8 border-t border-neutral-200 pt-8 text-center text-sm text-neutral-600">
-          <p>
-            © 2024 Dadalicious Bakery. Made with ❤️ for your special moments.
-          </p>
+          <p>© 2024 Makkar Bakers. Made with ❤️ for your special moments.</p>
         </div>
       </div>
     </footer>
